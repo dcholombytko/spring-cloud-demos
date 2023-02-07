@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: vault-app
+  config:
+    import: vault://spring-apps/${spring.application.name}/${SPRING_PROFILES_ACTIVE:dev}
+
+spring.cloud.vault:
+  host: localhost
+  port: 8200
+  scheme: https
+  uri: https://localhost:8200
+  connection-timeout: 5000
+  read-timeout: 15000
+  token: hvs.po1gUU41yUANKIiSQsKTThqH
+
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      exposure:
+        include: "*"

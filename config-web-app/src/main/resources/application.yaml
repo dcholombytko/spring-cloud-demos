@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: config-web-app
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+  config:
+    import: configserver:http://localhost:8888
+
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      exposure:
+        include: "*"

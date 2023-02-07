@@ -1,0 +1,41 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+---
+spring:
+  application:
+    name: discovery-server
+  config:
+    activate:
+      on-profile: peer1
+server:
+  port: 8081
+eureka:
+  instance:
+    hostname: spring-eureka-peer1
+    registryFetchIntervalSeconds: 30
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationDurationInSeconds: 5
+  client:
+    serviceUrl:
+      defaultZone: http://spring-eureka-peer2:8082/eureka/
+---
+spring:
+  application:
+    name: discovery-server
+  config:
+    activate:
+      on-profile: peer2
+server:
+  port: 8082
+eureka:
+  instance:
+    hostname: spring-eureka-peer2
+    registryFetchIntervalSeconds: 30
+    leaseRenewalIntervalInSeconds: 3
+    leaseExpirationDurationInSeconds: 5
+  client:
+    serviceUrl:
+      defaultZone: http://spring-eureka-peer1:8081/eureka/

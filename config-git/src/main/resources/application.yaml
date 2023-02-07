@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: config-server
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@your.git.repo.com:dcholombytko/spring-cloud-config-example.git
+          ignoreLocalSshSettings: true
+          clone-on-start: true
+          private-key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            RSA KEY
+            -----END RSA PRIVATE KEY-----
+
+
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8888
